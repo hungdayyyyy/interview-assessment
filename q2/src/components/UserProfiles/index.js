@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Spin, Button, Input, Card, Alert, Typography, Space } from "antd";
 import { EditOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
-import UserService from "../services/ProfileServices";
+import UserService from "src/services/ProfileServices";
 
 const { Title, Text } = Typography;
 const UserProfile = () => {
@@ -30,7 +30,7 @@ const UserProfile = () => {
 
       // Fetch user data (using ID = 1 as specified)
       const userData = await UserService.getUserById(1);
-
+      console.log(abortControllerRef);
       // Check if component is still mounted
       if (!abortControllerRef.current?.signal.aborted) {
         setUser(userData);
@@ -59,27 +59,22 @@ const UserProfile = () => {
       return;
     }
 
-    const previousName = user.name; // Declare previousName variable here
-
+    const previousName = user.name;
     try {
       setUpdating(true);
-
-      // Optimistic update - update UI immediately
       setUser((prev) => ({ ...prev, name: editName }));
       setIsEditing(false);
 
-      // Create abort controller for update request
       updateAbortControllerRef.current = new AbortController();
 
       // Send update request to API
-      await UserService.updateProfile({
+      await UserService.updateProfile(user.id, {
         ...user,
         name: editName,
       });
 
       console.log("Profile updated successfully");
     } catch (err) {
-      // Revert optimistic update on error
       if (!updateAbortControllerRef.current?.signal.aborted) {
         setUser((prev) => ({ ...prev, name: previousName }));
         setEditName(previousName);
@@ -94,7 +89,7 @@ const UserProfile = () => {
   };
 
   /**
-   * Cancel edit mode
+   * Cancel edit
    */
   const handleCancelEdit = () => {
     setEditName(user.name);
@@ -111,8 +106,6 @@ const UserProfile = () => {
   // Fetch user data on component mount
   useEffect(() => {
     fetchUserData();
-
-    // Cleanup function - cancel requests on unmount
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
