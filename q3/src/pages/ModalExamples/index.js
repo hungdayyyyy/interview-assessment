@@ -51,10 +51,18 @@ const ModalExamples = () => {
 
       {/* Basic Modal Example */}
       <Modal isOpen={basicModalOpen} onClose={() => setBasicModalOpen(false)}>
-        <h2 id="modal-title" style={{ marginTop: 0, marginBottom: "10px" }}>
+        <h2
+          id="modal-title"
+          style={{
+            marginTop: 0,
+            marginBottom: "10px",
+            color: "black",
+            fontSize: "20px",
+          }}
+        >
           This is the modal title
         </h2>
-        <p style={{ color: "#666", marginBottom: "20px" }}>
+        <p style={{ color: "black", marginBottom: "20px", fontSize: "18px" }}>
           This is the modal description. You can put any content here.
         </p>
         <div
@@ -74,10 +82,18 @@ const ModalExamples = () => {
         isOpen={confirmModalOpen}
         onClose={() => setConfirmModalOpen(false)}
       >
-        <h2 id="modal-title" style={{ marginTop: 0, marginBottom: "10px" }}>
+        <h2
+          id="modal-title"
+          style={{
+            marginTop: 0,
+            marginBottom: "10px",
+            color: "black",
+            fontSize: "20px",
+          }}
+        >
           Confirm Action
         </h2>
-        <p style={{ color: "#666", marginBottom: "20px" }}>
+        <p style={{ color: "#666", marginBottom: "20px", fontSize: "18px" }}>
           Are you sure you want to perform this action? This cannot be undone.
         </p>
         <div
@@ -97,16 +113,22 @@ const ModalExamples = () => {
 
       {/* Form Modal Example */}
       <Modal isOpen={formModalOpen} onClose={() => setFormModalOpen(false)}>
-        <h2 id="modal-title" style={{ marginTop: 0, marginBottom: "20px" }}>
+        <h2
+          id="modal-title"
+          style={{ marginTop: 0, marginBottom: "20px", color: "black" }}
+        >
           Contact Form
         </h2>
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "15px" }}>
+          <div style={{ marginBottom: "20px" }}>
             <label
               style={{
                 display: "block",
-                marginBottom: "5px",
+                marginBottom: "15px",
                 fontWeight: "bold",
+                color: "black",
+                fontSize: "15px",
+                textAlign: "left",
               }}
             >
               Name:
@@ -116,19 +138,26 @@ const ModalExamples = () => {
               required
               style={{
                 width: "100%",
-                padding: "8px",
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                fontSize: "14px",
+                padding: "12px",
+                border: "1px solid #e5e5e5",
+                borderRadius: "6px",
+                fontSize: "16px",
+                outline: "none",
+                marginBottom: "15px",
+                boxSizing: "border-box",
               }}
             />
           </div>
-          <div style={{ marginBottom: "15px" }}>
+
+          <div style={{ marginBottom: "30px" }}>
             <label
               style={{
                 display: "block",
-                marginBottom: "5px",
+                marginBottom: "15px",
                 fontWeight: "bold",
+                color: "black",
+                fontSize: "15px",
+                textAlign: "left",
               }}
             >
               Email:
@@ -136,51 +165,84 @@ const ModalExamples = () => {
             <input
               type="email"
               required
+              placeholder="Email"
               style={{
                 width: "100%",
-                padding: "8px",
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                fontSize: "14px",
+                padding: "12px",
+                border: "1px solid #e5e5e5",
+                borderRadius: "6px",
+                fontSize: "16px",
+                outline: "none",
+                boxSizing: "border-box",
               }}
             />
           </div>
-          <div style={{ marginBottom: "20px" }}>
+
+          <div style={{ marginBottom: "30px" }}>
             <label
               style={{
                 display: "block",
-                marginBottom: "5px",
+                marginBottom: "15px",
                 fontWeight: "bold",
+                color: "black",
+                fontSize: "15px",
+                textAlign: "left",
               }}
             >
               Message:
             </label>
             <textarea
               required
-              rows="4"
+              rows="6"
+              placeholder="Message"
               style={{
                 width: "100%",
-                padding: "8px",
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                fontSize: "14px",
+                padding: "12px",
+                border: "1px solid #e5e5e5",
+                borderRadius: "6px",
+                fontSize: "16px",
                 resize: "vertical",
+                outline: "none",
+                fontFamily: "inherit",
+                boxSizing: "border-box",
               }}
             />
           </div>
+
           <div
-            style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}
+            style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}
           >
-            <Button
+            <button
               type="button"
-              variant="secondary"
               onClick={() => setFormModalOpen(false)}
+              style={{
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "6px",
+                fontSize: "16px",
+                cursor: "pointer",
+                backgroundColor: "#6b7280",
+                color: "white",
+                fontWeight: "500",
+              }}
             >
               Cancel
-            </Button>
-            <Button type="submit" variant="primary">
+            </button>
+            <button
+              type="submit"
+              style={{
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "6px",
+                fontSize: "16px",
+                cursor: "pointer",
+                backgroundColor: "#3b82f6",
+                color: "white",
+                fontWeight: "500",
+              }}
+            >
               Send Message
-            </Button>
+            </button>
           </div>
         </form>
       </Modal>
@@ -192,10 +254,18 @@ const ModalExamples = () => {
         showCloseButton={false}
         closeOnBackdrop={false}
       >
-        <h2 id="modal-title" style={{ marginTop: 0, marginBottom: "10px" }}>
+        <h2
+          id="modal-title"
+          style={{
+            marginTop: 0,
+            marginBottom: "10px",
+            fontSize: "18px",
+            color: "black",
+          }}
+        >
           Custom Modal
         </h2>
-        <p style={{ color: "#666", marginBottom: "20px" }}>
+        <p style={{ color: "#666", marginBottom: "20px", fontSize: "18px" }}>
           This modal has no close button and doesn't close when clicking the
           backdrop. You must use the button below or press Escape to close it.
         </p>
